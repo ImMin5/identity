@@ -1,5 +1,6 @@
 ---
 role_id: managed-domain-admin
 name: Domain Admin
-version: '1.0'
+state: ENABLED
+version: '1.1'
 role_type: DOMAIN_ADMIN
