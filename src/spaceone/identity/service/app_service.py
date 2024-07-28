@@ -45,7 +45,6 @@ class AppService(BaseService):
                 'tags': 'dict',
                 'expired_at': 'str',
                 'resource_group': 'str',    # required
-                'users_project': 'list',    # injected from auth
                 'project_id': 'str',
                 'project_group_id': 'str',
                 'workspace_id': 'str',      # injected from auth
@@ -68,7 +67,12 @@ class AppService(BaseService):
             workspace_mgr.get_workspace(params.workspace_id, params.domain_id)
 
             if params.resource_group == "PROJECT":
-                if params.project_group_id:
+                if params.project_id and params.project_group_id:
+                    raise ERROR_INVALID_PARAMETER(
+                        key="project_id or project_group_id",
+                        reason="Both are not allowed",
+                    )
+                elif params.project_group_id:
                     project_group_mgr = ProjectGroupManager()
                     project_group_mgr.get_project_group(
                         params.project_group_id, params.domain_id
@@ -194,7 +198,6 @@ class AppService(BaseService):
             params.expired_at,
             app_vo.role_type,
             app_vo.workspace_id,
-            app_vo.projects,
         )
 
         # Update app info

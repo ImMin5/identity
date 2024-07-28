@@ -25,7 +25,8 @@ class AppResponse(BaseModel):
     client_id: Union[str, None] = None
     role_id: Union[str, None] = None
     resource_group: Union[ResourceGroup, None] = None
-    projects: Union[List[str], None] = None
+    project_id: Union[str, None] = None
+    project_group_id: Union[str, None] = None
     workspace_id: Union[str, None] = None
     domain_id: Union[str, None] = None
     created_at: Union[datetime, None] = None

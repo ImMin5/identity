@@ -20,7 +20,8 @@ class App(MongoModel):
     resource_group = StringField(
         max_length=40, choices=("DOMAIN", "WORKSPACE", "PROJECT")
     )
-    projects = ListField(StringField(max_length=40), default=None)
+    project_id = StringField(max_length=40, default=None, null=True)
+    project_group_id = StringField(max_length=40, default=None, null=True)
     workspace_id = StringField(max_length=40)
     domain_id = StringField(max_length=40)
     created_at = DateTimeField(auto_now_add=True)
