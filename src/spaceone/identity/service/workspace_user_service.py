@@ -67,6 +67,7 @@ class WorkspaceUserService(BaseService):
             params (UserFindRequest): {
                 'keyword': 'str',           # required
                 'state': 'str',
+                'auth_type': 'str',
                 'page': 'dict (spaceone.api.core.v1.Page)',
                 'domain_id': 'str',         # injected from auth (required)
                 'workspace_id': 'str',      # injected from auth (required)
@@ -90,7 +91,7 @@ class WorkspaceUserService(BaseService):
             ],
             "sort": [{"key": "user_id"}],
             "page": params.page,
-            "only": ["user_id", "name", "state"],
+            "only": ["user_id", "name", "state", "auth_type"],
         }
 
         # append keyword filter
@@ -103,6 +104,9 @@ class WorkspaceUserService(BaseService):
         # append state filter
         if params.state:
             query["filter"].append({"k": "state", "v": params.state, "o": "eq"})
+
+        if params.auth_type:
+            query["filter"].append({"k": "auth_type", "v": params.auth_type, "o": "eq"})
 
         user_vos, total_count = user_mgr.list_users(query)
 

@@ -49,6 +49,7 @@ class UserSummaryResponse(BaseModel):
     user_id: str
     name: str
     state: State
+    auth_type: AuthType
 
 
 class UsersSummaryResponse(BaseModel):

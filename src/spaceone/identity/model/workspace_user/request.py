@@ -40,6 +40,7 @@ class WorkspaceUserGetRequest(BaseModel):
 class WorkspaceUserFindRequest(BaseModel):
     keyword: Union[str, None] = None
     state: Union[State, None] = None
+    auth_type: Union[AuthType, None] = None
     page: Union[dict, None] = None
     workspace_id: str
     domain_id: str
